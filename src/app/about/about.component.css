@@ -1,0 +1,51 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.about-heading {
+    font-size: 36px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.about-description {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 40px;
+}
+
+.instructions-heading,
+.contact-heading {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.instructions-list,
+.contact-links {
+    margin-left: 20px;
+}
+
+.instructions-list li {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.contact-links li {
+    font-size: 16px;
+    color: #0066cc;
+    margin-bottom: 10px;
+}
+
+.contact-links a {
+    text-decoration: none;
+    color: #0066cc;
+}
+
+.contact-links a:hover {
+    text-decoration: underline;
+}

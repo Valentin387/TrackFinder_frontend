@@ -1,0 +1,8 @@
+.language-selector {
+    margin-left: auto; /* Move the language selector to the right */
+}
+
+.navbar-brand.active,
+.nav-link.active {
+  font-size: 1.2rem; /* Adjust font size as desired */
+}
