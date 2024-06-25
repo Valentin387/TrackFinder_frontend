@@ -123,4 +123,30 @@ export class LandingPageComponent {
     this.newSong = {};
   }
 
+  getCollectionName(collection: any): string {
+    // Check if the collection has a key property (dictionary structure)
+    if (collection.hasOwnProperty('key')) {
+      console.log('it has key property');
+      return collection.key;
+    } else {
+      console.log('it has NOT key property');
+      console.log('TYPE:', typeof collection);
+      // If no key property exists, assume the first property is the value (array of songs)
+      // You might need to adjust this logic depending on your backend structure.
+      const keys = Object.keys(collection);
+      return keys[0];
+    }
+  }
+  
+  getSongs(collection: any): any[] {
+    // Access the song objects based on the collection structure
+    if (collection.hasOwnProperty('value')) {
+      return collection.value;
+    } else {
+      // If no value property exists, assume the collection object itself is the array of songs
+      // You might need to adjust this logic depending on your backend structure.
+      return collection;
+    }
+  }
+
 }

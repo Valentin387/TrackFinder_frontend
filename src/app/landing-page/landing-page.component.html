@@ -53,13 +53,22 @@
         <div class="results-pane">
             <h2>Search Results</h2>
             <ul *ngIf="searchResults && searchResults.length > 0">
-                <li *ngFor="let result of searchResults">
-                <p><strong>Title:</strong> {{ result.title }}</p>
-                <p><strong>Artist:</strong> {{ result.artist }}</p>
-                <p><strong>Album:</strong> {{ result.album }}</p>
-                <p><strong>Release Year:</strong> {{ result.releaseYear }}</p>
+                <li *ngFor="let collection of searchResults"> <h2>{{ getCollectionName(collection) }}</h2> <ul>
+                    <p><strong>Title:</strong> {{ collection.value}}</p>
+                    <li *ngFor="let song of collection.value">  
+                      <p><strong>Title:</strong> {{ collection.value}}</p>
+                      <p><strong>Subtitle:</strong> {{ song.subtitle }}</p>
+                      <p><strong>Main artist:</strong> {{ song.main_artist }}</p>
+                      <p><strong>Collaborators:</strong> {{ song.collaborators }}</p>
+                      <p><strong>Album artist:</strong> {{ song.album_artist }}</p>
+                      <p><strong>Album:</strong> {{ song.album }}</p>
+                      <p><strong>Release year:</strong> {{ song.year }}</p>
+                      <p><strong>Release genre:</strong> {{ song.genre }}</p>
+                      <p><strong>Release duration:</strong> {{ song.duration }}</p>
+                    </li>
+                  </ul>
                 </li>
-            </ul>
+              </ul>
             <p *ngIf="searchResults && searchResults.length === 0">No songs found matching your criteria.</p>
         </div>
     </div>
