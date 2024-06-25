@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common'; // Import CommonModule
 import { FormsModule } from '@angular/forms'; // Import FormsModule
+import { title } from 'process';
 
 @Component({
   selector: 'app-landing-page',
@@ -11,9 +12,35 @@ import { FormsModule } from '@angular/forms'; // Import FormsModule
 })
 export class LandingPageComponent {
 
-  searchCriteria: any = {};
+  searchCriteria: any = {
+    songTitle: '',
+    artist: '',
+    album: '',
+    genre: '',
+    releaseYear: ''
+  };
+
   searchResults: any[] = [];
-  newSong: any = {};
+
+  newSong: any = {
+    title: '',
+    subtitle: '',
+    bitrate: 0,
+    year: '',
+    commentaries: '',
+    main_artist: '',
+    collaborators: '',
+    album_artist: '',
+    album: '',
+    track_number: '',
+    genre: '',
+    duration: 0,
+    collection: '' // Initially empty string
+
+  };
+
+  newCollectionName: string = ''; // To store user-entered collection name
+  existingCollections: string[] = ['Favorites', 'Workout', 'Chill', 'Study', 'Party'];
 
   constructor() { }
 
@@ -27,10 +54,20 @@ export class LandingPageComponent {
   }
 
   onAddSong() {
-    // Implement logic to call your backend API with new song data
-    console.log('New song to add:', this.newSong);
-    // Clear song data after submitting
+    if (this.newSong.collection) {
+      // Logic to add song to existing collection using newSong.collection
+      console.log('Adding song to existing collection:', this.newSong.collection);
+    } else if (this.newCollectionName) {
+      // Logic to create a new collection and add the song
+      console.log('Creating new collection:', this.newCollectionName, 'and adding song');
+      // Update your backend service to handle creating a new collection
+    } else {
+      // Handle case where user didn't select or provide a collection name
+      console.warn('Please select or provide a collection name');
+    }
+    // Clear song data and potentially new collection name after submitting
     this.newSong = {};
+    this.newCollectionName = '';
   }
 
   clearSearchForm() {

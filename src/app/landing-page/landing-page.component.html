@@ -25,6 +25,14 @@
                 </div>
                 </div>
                 <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="genre">Genre:</label>
+                        <input type="text" id="genre" [(ngModel)]="newSong.genre" name="genre" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
                 <div class="form-group">
                     <label for="releaseYear">Release Year:</label>
                     <input type="number" id="releaseYear" [(ngModel)]="searchCriteria.releaseYear" name="releaseYear" class="form-control">
@@ -83,7 +91,7 @@
             <div class="col-md-6">
             <div class="form-group">
                 <label for="year">Year:</label>
-                <input type="text" id="year" [(ngModel)]="newSong.year" name="year" class="form-control">
+                <input type="number" id="year" [(ngModel)]="newSong.year" name="year" class="form-control">
             </div>
             </div>
         </div>
@@ -141,12 +149,29 @@
             </div>
             </div>
             <div class="col-md-6">
-                <button type="button" class="btn btn-outline-primary btn-block" (click)="clearAddSongForm()">Clear</button>
-            </div>
+                <div class="form-group">
+                  <label for="collection"> Existing Collection:</label>
+                  <select class="form-control" id="collection" [(ngModel)]="newSong.collection">
+                    <option value="">-- Select Collection --</option>
+                    <option *ngFor="let collection of existingCollections" [value]="collection">{{ collection }}</option>
+                  </select>
+                </div>
+              </div>
         </div>
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="newCollectionName">New Collection (Optional):</label>
+                <input type="text" id="newCollectionName" [(ngModel)]="newCollectionName" name="newCollectionName" class="form-control" *ngIf="!newSong.collection">
+              </div>
+            </div>
+          </div>
+        <div class="row">
+            <div class="col-md-6">
                 <button type="submit" class="btn btn-primary btn-block">Add Song</button>
+            </div>
+            <div class="col-md-6">
+                <button type="button" class="btn btn-outline-primary btn-block" (click)="clearAddSongForm()">Clear</button>
             </div>
         </div>
     </form>
