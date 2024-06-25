@@ -138,6 +138,7 @@ export class LandingPageComponent {
     }
   }
   
+  /*
   getSongs(collection: any): any[] {
     // Access the song objects based on the collection structure
     if (collection.hasOwnProperty('value')) {
@@ -148,8 +149,15 @@ export class LandingPageComponent {
       // You might need to adjust this logic depending on your backend structure.
       const values = Object.values(collection);
       console.log('Collection values:', values);
-      return collection;
+      console.log("Type of values:", typeof values);
+      return values;
     }
+  }
+  */
+
+  getSongs(collection: any): any[] {
+    // Access the song list directly from the collection object
+    return collection[Object.keys(collection)[0]]; // Assuming the first key is the song list
   }
 
 }
