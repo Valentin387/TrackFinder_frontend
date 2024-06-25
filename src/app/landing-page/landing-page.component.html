@@ -53,8 +53,7 @@
         <div class="results-pane">
             <h2>Search Results</h2>
             <ul *ngIf="searchResults && searchResults.length > 0">
-                <li *ngFor="let collection of searchResults"> <h2>{{ getCollectionName(collection) }}</h2> <ul>
-                    <p><strong>Title:</strong> {{ collection.value}}</p>
+                <li *ngFor="let collection of searchResults"> <h3>{{ getCollectionName(collection) }}</h3> <ul>
                     <li *ngFor="let song of collection.value">  
                       <p><strong>Title:</strong> {{ collection.value}}</p>
                       <p><strong>Subtitle:</strong> {{ song.subtitle }}</p>
