@@ -78,7 +78,8 @@ export class LandingPageComponent {
       collaborators: this.searchCriteria.artist,
       album_artist: this.searchCriteria.artist,
       album: this.searchCriteria.album,
-      year: this.searchCriteria.releaseYear,
+      //cast to string, avoid undefined error
+      year: (this.searchCriteria.releaseYear !== null) ? this.searchCriteria.releaseYear.toString() : "",
       track_number: "",
       genre: this.searchCriteria.genre,
       duration: 0,
