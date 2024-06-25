@@ -85,7 +85,6 @@ export class LandingPageComponent {
 
     this.generalUseService.search_songs(body).subscribe({
       next: (response) => {
-        console.log('Search results:', response);
         this.searchResults = response;
       },
       error: (error) => {
@@ -124,36 +123,14 @@ export class LandingPageComponent {
   getCollectionName(collection: any): string {
     // Check if the collection has a key property (dictionary structure)
     if (collection.hasOwnProperty('key')) {
-      //console.log('it has key property');
       return collection.key;
     } else {
       //console.log('it has NOT key property'); spoiler: it has not
-      //console.log('TYPE:', typeof collection); //collections are of type object
-      // If no key property exists, assume the first property is the value (array of songs)
-      // You might need to adjust this logic depending on your backend structure.
-      //list collection properties
-      //console.log('Collection properties:', Object.keys(collection));
       const keys = Object.keys(collection);
       return keys[0];
     }
   }
-  
-  /*
-  getSongs(collection: any): any[] {
-    // Access the song objects based on the collection structure
-    if (collection.hasOwnProperty('value')) {
-      console.log('Collection value:', collection.value);
-      return collection.value;
-    } else {
-      // If no value property exists, assume the collection object itself is the array of songs
-      // You might need to adjust this logic depending on your backend structure.
-      const values = Object.values(collection);
-      console.log('Collection values:', values);
-      console.log("Type of values:", typeof values);
-      return values;
-    }
-  }
-  */
+
 
   getSongs(collection: any): any[] {
     // Access the song list directly from the collection object
