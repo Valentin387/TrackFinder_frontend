@@ -6,3 +6,7 @@
 .nav-link.active {
   font-size: 1.2rem; /* Adjust font size as desired */
 }
+
+.color-nav {
+  background-color: #c7c7e1; /* Change background color */
+}

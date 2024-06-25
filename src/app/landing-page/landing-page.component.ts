@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common'; // Import CommonModule
 import { FormsModule } from '@angular/forms'; // Import FormsModule
-import { title } from 'process';
+import { GeneralUseService } from '../services/general-use/general-use.service'; // Import GeneralUseService
 
 @Component({
   selector: 'app-landing-page',
@@ -11,6 +11,10 @@ import { title } from 'process';
   styleUrl: './landing-page.component.css'
 })
 export class LandingPageComponent {
+
+  constructor(
+    private generalUseService: GeneralUseService
+  ) {}
 
   searchCriteria: any = {
     songTitle: '',
@@ -40,11 +44,24 @@ export class LandingPageComponent {
   };
 
   newCollectionName: string = ''; // To store user-entered collection name
-  existingCollections: string[] = ['Favorites', 'Workout', 'Chill', 'Study', 'Party'];
+  existingCollections: string[] = [];
 
-  constructor() { }
+  ngOnInit() {
+    this.getExistingCollections();
+   }
 
-  ngOnInit() { }
+  getExistingCollections() {
+    this.generalUseService.get_collections().subscribe({
+      next: (response) => {
+        console.log('Collections fetched:', response);
+        this.existingCollections = response;
+      },
+      error: (error) => {
+        console.error('Error fetching collections:', error);
+        this.existingCollections = ['Favorites', 'Workout', 'Chill', 'Study', 'Party'];
+      }
+    });
+  }
 
   onSearch() {
     // Implement logic to call your backend API with search criteria and update searchResults
@@ -54,6 +71,7 @@ export class LandingPageComponent {
   }
 
   onAddSong() {
+    console.log('Add song submitted:', this.newSong);
     if (this.newSong.collection) {
       // Logic to add song to existing collection using newSong.collection
       console.log('Adding song to existing collection:', this.newSong.collection);
