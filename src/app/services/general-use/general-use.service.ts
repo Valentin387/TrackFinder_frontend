@@ -15,12 +15,12 @@ export class GeneralUseService {
 
   search_songs(body: any): Observable<any> {
     let local_url = this.baseUrl + 'general_use/search_songs';
-    return this.http.post<any>(local_url, { body }); 
+    return this.http.post<any>(local_url, body); 
   }
 
   add_song(body: any): Observable<any> {
     let local_url = this.baseUrl + 'general_use/add_song';
-    return this.http.post<any>(local_url, { body }); 
+    return this.http.post<any>(local_url, body); 
   }
 
   get_collections(): Observable<any> {

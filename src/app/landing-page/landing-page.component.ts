@@ -53,7 +53,7 @@ export class LandingPageComponent {
   getExistingCollections() {
     this.generalUseService.get_collections().subscribe({
       next: (response) => {
-        console.log('Collections fetched:', response);
+        //console.log('Collections fetched:', response);
         this.existingCollections = response;
       },
       error: (error) => {
@@ -67,7 +67,34 @@ export class LandingPageComponent {
     // Implement logic to call your backend API with search criteria and update searchResults
     console.log('Search submitted:', this.searchCriteria);
     // Clear search results after submitting a new search
-    this.searchResults = [];
+
+    let body : any = {
+      name: this.searchCriteria.songTitle,
+      title: this.searchCriteria.songTitle,
+      sub_title: this.searchCriteria.songTitle,
+      bitrate: 0,
+      commentaries: "",
+      main_artist: this.searchCriteria.artist,
+      collaborators: this.searchCriteria.artist,
+      album_artist: this.searchCriteria.artist,
+      album: this.searchCriteria.album,
+      year: this.searchCriteria.releaseYear,
+      track_number: "",
+      genre: this.searchCriteria.genre,
+      duration: 0,
+    };
+
+    console.log('Search body:', body);
+    this.generalUseService.search_songs(body).subscribe({
+      next: (response) => {
+        console.log('Search results:', response);
+        this.searchResults = response;
+      },
+      error: (error) => {
+        console.error('Error fetching search results:', error);
+        this.searchResults = [];
+      }
+    });
   }
 
   onAddSong() {
