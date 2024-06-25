@@ -97,14 +97,46 @@ export class LandingPageComponent {
   }
 
   onAddSong() {
+    this.newSong.year = (this.newSong.year !== null) ? this.newSong.year.toString() : "";
+
     console.log('Add song submitted:', this.newSong);
     if (this.newSong.collection) {
       // Logic to add song to existing collection using newSong.collection
-      console.log('Adding song to existing collection:', this.newSong.collection);
+      this.generalUseService.add_song(this.newSong).subscribe({
+        next: (response) => {
+          console.log('Song added successfully:', response);
+        },
+        error: (error) => {
+          console.error('Error adding song:', error);
+        }
+      });
+
     } else if (this.newCollectionName) {
       // Logic to create a new collection and add the song
-      console.log('Creating new collection:', this.newCollectionName, 'and adding song');
-      // Update your backend service to handle creating a new collection
+      let newSong_with_new_collection: any = {
+        title: this.newSong.title,
+        subtitle: this.newSong.subtitle,
+        bitrate: this.newSong.bitrate,
+        year: (this.newSong.year !== null) ? this.newSong.year.toString() : "",
+        commentaries: this.newSong.commentaries,
+        main_artist: this.newSong.main_artist,
+        collaborators: this.newSong.collaborators,
+        album_artist: this.newSong.album_artist,
+        album: this.newSong.album,
+        track_number: this.newSong.track_number,
+        genre: this.newSong.genre,
+        duration: this.newSong.duration,
+        collection: this.newCollectionName
+      };
+
+      this.generalUseService.add_song(newSong_with_new_collection).subscribe({
+        next: (response) => {
+          console.log('Song added successfully into the new collection:', response);
+        },
+        error: (error) => {
+          console.error('Error adding song:', error);
+        }
+      });
     } else {
       // Handle case where user didn't select or provide a collection name
       console.warn('Please select or provide a collection name');
