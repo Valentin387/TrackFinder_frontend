@@ -1,1 +1,196 @@
-<p>landing-page works!</p>
+
+<div class="container split-container">
+    <div class="split-pane">
+        <h2>Search for a song</h2>
+        <form (ngSubmit)="onSearch()">
+            <div class="row">
+                <div class="col-md-6">
+                <div class="form-group">
+                    <label for="songTitle">Song Title:</label>
+                    <input type="text" id="songTitle" [(ngModel)]="searchCriteria.songTitle" name="songTitle" class="form-control">
+                </div>
+                </div>
+                <div class="col-md-6">
+                <div class="form-group">
+                    <label for="artist">Artist:</label>
+                    <input type="text" id="artist" [(ngModel)]="searchCriteria.artist" name="artist" class="form-control">
+                </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                <div class="form-group">
+                    <label for="album">Album:</label>
+                    <input type="text" id="album" [(ngModel)]="searchCriteria.album" name="album" class="form-control">
+                </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="genre">Genre:</label>
+                        <input type="text" id="genre" [(ngModel)]="searchCriteria.genre" name="genre" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                <div class="form-group">
+                    <label for="releaseYear">Release Year:</label>
+                    <input type="number" id="releaseYear" [(ngModel)]="searchCriteria.releaseYear" name="releaseYear" class="form-control">
+                </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                <button type="button" class="btn btn-secondary btn-block" (click)="clearSearchForm()">Clear</button>
+                </div>
+                <div class="col-md-6">
+                <button type="submit" class="btn btn-primary btn-block">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="split-pane">
+        <div class="results-pane">
+            <h2>Search Results</h2>
+            <mat-accordion *ngIf="searchResults && searchResults.length > 0">
+                <mat-expansion-panel *ngFor="let collection of searchResults">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>{{ getCollectionName(collection) }}</mat-panel-title>
+                  </mat-expansion-panel-header>
+                  
+                    <mat-expansion-panel *ngFor="let song of getSongs(collection)">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title> {{ song.title}}</mat-panel-title>
+                        </mat-expansion-panel-header>
+                        
+                        <p><strong>Subtitle:</strong> {{ song.subtitle }}</p>
+                        <p><strong>Main artist:</strong> {{ song.main_artist }}</p>
+                        <p><strong>Collaborators:</strong> {{ song.collaborators }}</p>
+                        <p><strong>Album artist:</strong> {{ song.album_artist }}</p>
+                        <p><strong>Album:</strong> {{ song.album }}</p>
+                        <p><strong>Release year:</strong> {{ song.year }}</p>
+                        <p><strong>Genre:</strong> {{ song.genre }}</p>
+                        <p><strong>Release duration:</strong> {{ song.duration }}</p>
+            
+                  </mat-expansion-panel>
+                </mat-expansion-panel>
+              </mat-accordion>
+            <p *ngIf="searchResults && searchResults.length === 0">No songs found matching your criteria.</p>
+        </div>
+    </div>
+
+    <div class="split-pane">
+        <h2>Add a new Song</h2>
+        <form (ngSubmit)="onAddSong()">
+        <div class="row">
+            <div class="col-md-6">
+            <div class="form-group">
+                <label for="title">Title:</label>
+                <input type="text" id="title" [(ngModel)]="newSong.title" name="title" class="form-control" required>
+            </div>
+            </div>
+            <div class="col-md-6">
+            <div class="form-group">
+                <label for="subtitle">Subtitle:</label>
+                <input type="text" id="subtitle" [(ngModel)]="newSong.subtitle" name="subtitle" class="form-control" required>
+            </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+            <div class="form-group">
+                <label for="bitrate">Bitrate:</label>
+                <input type="number" id="bitrate" [(ngModel)]="newSong.bitrate" name="bitrate" class="form-control" required>
+            </div>
+            </div>
+            <div class="col-md-6">
+            <div class="form-group">
+                <label for="year">Year:</label>
+                <input type="number" id="year" [(ngModel)]="newSong.year" name="year" class="form-control" required>
+            </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="commentaries">Commentaries:</label>
+            <input type="text" id="commentaries" [(ngModel)]="newSong.commentaries" name="commentaries" class="form-control" rows="3" required>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+            <div class="form-group">
+                <label for="mainArtist">Main Artist:</label>
+                <input type="text" id="mainArtist" [(ngModel)]="newSong.main_artist" name="main_artist" class="form-control" required>
+            </div>
+            </div>
+            <div class="col-md-6">
+            <div class="form-group">
+                <label for="collaborators">Collaborators:</label>
+                <input type="text" id="collaborators" [(ngModel)]="newSong.collaborators" name="collaborators" class="form-control" required>
+            </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+            <div class="form-group">
+                <label for="albumArtist">Album Artist:</label>
+                <input type="text" id="albumArtist" [(ngModel)]="newSong.album_artist" name="album_artist" class="form-control" required>
+            </div>
+            </div>
+            <div class="col-md-6">
+            <div class="form-group">
+                <label for="album">Album:</label>
+                <input type="text" id="album" [(ngModel)]="newSong.album" name="album" class="form-control" required>
+            </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+            <div class="form-group">
+                <label for="trackNumber">Track Number:</label>
+                <input type="number" id="trackNumber" [(ngModel)]="newSong.track_number" name="track_number" class="form-control" required>
+            </div>
+            </div>
+            <div class="col-md-6">
+            <div class="form-group">
+                <label for="genre">Genre:</label>
+                <input type="text" id="genre" [(ngModel)]="newSong.genre" name="genre" class="form-control" required>
+            </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+            <div class="form-group">
+                <label for="duration">Duration:</label>
+                <input type="number" id="duration" [(ngModel)]="newSong.duration" name="duration" class="form-control" required>
+            </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                  <label for="collection"> Existing Collection:</label>
+                  <select class="form-control" id="collection" [(ngModel)]="newSong.collection" name="existingCollections" required>
+                    <option value="">-- Select Collection --</option>
+                    <option *ngFor="let collection of existingCollections" [value]="collection">{{ collection }}</option>
+                  </select>
+                </div>
+              </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="newCollectionName">New Collection (Optional):</label>
+                <input type="text" id="newCollectionName" [(ngModel)]="newCollectionName" name="newCollectionName" class="form-control" *ngIf="!newSong.collection" required>
+              </div>
+            </div>
+          </div>
+        <div class="row">
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-primary btn-block">Add Song</button>
+            </div>
+            <div class="col-md-6">
+                <button type="button" class="btn btn-outline-primary btn-block" (click)="clearAddSongForm()">Clear</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+    

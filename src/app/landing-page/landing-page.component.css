@@ -1,150 +1,26 @@
-/* Original styles */
 .container {
-    display: flex;
-    width: 100%;
-    margin: 0 auto;
+  display: flex;
+  width: 100%;
+  margin: 0 auto;
 }
 
-.left-panel {
-  border-right: none;
+.split-container {
+  display: flex;
+  flex-grow: 1;
 }
-  
-.left-panel, .right-panel {
+
+.split-pane {
   flex: 1;
   padding: 1rem;
   border: 1px solid #ddd;
 }
 
-.mat-expansion-panel {
+.results-pane {
+  margin-top: 1rem;
+}
+
+.form-group {
   margin-bottom: 1rem;
 }
 
-.mat-panel-title {
-  font-weight: bold;
-}
-
-.right-panel {
-  display: flex;
-  height: 70vh;
-  flex-direction: column;
-  overflow-y: auto;
-}
-
-.chat-messages {
-  flex: 1;
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 1rem;
-  margin-bottom: auto;
-}
-
-.chat-input {
-  padding: 1rem;
-}
-
-/* Bootstrap styles for buttons */
-button.mat-raised-button {
-  margin-right: 5px;
-}
-
-button.mat-raised-button.primary {
-  background-color: #007bff;
-  color: #fff;
-}
-
-button.mat-raised-button.warn {
-  background-color: #dc3545;
-  color: #fff;
-}
-
-/* Align the "Add Users" button to the right */
-.left-panel button.mat-raised-button.primary {
-  float: right;
-}
-
-
-.sender-message {
-  text-align: right;
-  /* Additional styling for sender messages */
-}
-
-.receiver-message {
-  text-align: left;
-  /* Additional styling for receiver messages */
-}
-
-.chat-input {
-  display: flex;
-  overflow-y: hidden; /* Hide overflow vertically */
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 20px;
-  position: fixed;
-  bottom: 20px; /* Adjust as needed */
-  left: 50%; /* Center horizontally */
-  transform: translateX(-50%);
-  
-}
-
-.input-container {
-  flex: 1;
-  width: 85vh;
-  display: flex;
-  align-items: center;
-  background-color: #f5f5f5;
-  border-radius: 25px;
-  padding: 10px;
-}
-
-.input-container textarea {
-  flex: 1;
-  border: none;
-  outline: none;
-  padding: 10px;
-  border-radius: 25px;
-  font-size: 16px;
-  overflow-y: auto; /* Enable vertical scrolling */
-  resize: none; /* Disable resizing */
-  min-height: 40px; /* Set minimum height */
-}
-
-.input-container button {
-  margin-left: 10px;
-}
-
-/* Style for the send button icon */
-.mat-icon {
-  font-size: 20px;
-}
-
-/* Add some margin and padding to the date inputs */
-input[type="date"] {
-  margin: 5px;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-/* Style the date inputs on focus */
-input[type="date"]:focus {
-  outline: none;
-  border-color: #007bff; /* Change border color on focus */
-}
-
-/* Style the date inputs when they have a value */
-input[type="date"]:not(:placeholder-shown) {
-  border-color: #28a745; /* Change border color when input has a value */
-}
-
-.scroll-down-button {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-}
-
-.chat-messages {
-  /* Add styles for chat messages container */
-  padding-right: 5%;
-  overflow-y: auto;
-  height: 300vh; /* Adjust the height as needed */
-  position: relative; /* Ensure button stays fixed inside chat panel */
-}
+/* Add more styles for buttons, inputs etc. as needed */
