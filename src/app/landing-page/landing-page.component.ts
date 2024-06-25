@@ -1,12 +1,13 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common'; // Import CommonModule
 import { FormsModule } from '@angular/forms'; // Import FormsModule
+import { MatExpansionModule } from '@angular/material/expansion';
 import { GeneralUseService } from '../services/general-use/general-use.service'; // Import GeneralUseService
 
 @Component({
   selector: 'app-landing-page',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, MatExpansionModule],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.css'
 })
