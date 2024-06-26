@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common'; // Import CommonModule
 import { FormsModule } from '@angular/forms'; // Import FormsModule
 import { MatExpansionModule } from '@angular/material/expansion';
 import { GeneralUseService } from '../services/general-use/general-use.service'; // Import GeneralUseService
+import { MatDialog } from '@angular/material/dialog'; // Import MatDialog
+import { ConfirmationDialogComponent} from '../confirmation-dialog/confirmation-dialog.component'; // Import ConfirmationDialogComponent
 
 @Component({
   selector: 'app-landing-page',
@@ -14,7 +16,8 @@ import { GeneralUseService } from '../services/general-use/general-use.service';
 export class LandingPageComponent {
 
   constructor(
-    private generalUseService: GeneralUseService
+    private generalUseService: GeneralUseService,
+    private dialog: MatDialog
   ) {}
 
   //ngModel for the form
@@ -172,5 +175,21 @@ export class LandingPageComponent {
     // Access the song list directly from the collection object
     return collection[Object.keys(collection)[0]]; // Assuming the first key is the song list
   }
+
+  //Create a method in your component to open the popup message:
+  openConfirmationDialog(): void {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '300px',
+      data: { message: 'Are you sure you want to add this song to the database?' }
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // Reset all logic goes here
+        this.onAddSong();
+      }
+    });
+  }
+
 
 }
