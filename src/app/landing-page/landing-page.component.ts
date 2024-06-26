@@ -112,7 +112,7 @@ export class LandingPageComponent {
       collaborators: this.newSong.collaborators !== null ? this.newSong.collaborators : "",
       album_artist: this.newSong.album_artist !== null ? this.newSong.album_artist : "",
       album: this.newSong.album !== null ? this.newSong.album : "",
-      track_number: this.newSong.track_number !== null ? this.newSong.track_number : "",
+      track_number: this.newSong.track_number !== null ? this.newSong.track_number.toString() : "",
       genre: this.newSong.genre !== null ? this.newSong.genre : "",
       duration: this.newSong.duration !== null ? this.newSong.duration : 0, 
     };
