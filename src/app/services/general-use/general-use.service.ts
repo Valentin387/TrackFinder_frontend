@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -18,9 +18,10 @@ export class GeneralUseService {
     return this.http.post<any>(local_url, body); 
   }
 
-  add_song(body: any): Observable<any> {
+  add_song(body: any, collectionName: string): Observable<any> {
     let local_url = this.baseUrl + 'general_use/add_song';
-    return this.http.post<any>(local_url, body); 
+    let params = new HttpParams().set('collection_name', collectionName);
+    return this.http.post<any>(local_url, body,  { params } ); 
   }
 
   get_collections(): Observable<any> {

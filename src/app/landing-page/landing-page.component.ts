@@ -17,6 +17,7 @@ export class LandingPageComponent {
     private generalUseService: GeneralUseService
   ) {}
 
+  //ngModel for the form
   searchCriteria: any = {
     songTitle: '',
     artist: '',
@@ -27,9 +28,11 @@ export class LandingPageComponent {
 
   searchResults: any[] = [];
 
+  //ngModel for the form
   newSong: any = {
+    name: '',
     title: '',
-    subtitle: '',
+    sub_title: '',
     bitrate: 0,
     year: '',
     commentaries: '',
@@ -97,12 +100,27 @@ export class LandingPageComponent {
   }
 
   onAddSong() {
-    this.newSong.year = (this.newSong.year !== null) ? this.newSong.year.toString() : "";
+    
+    let newSong_data: any = {
+      name: this.newSong.title !== null ? this.newSong.title : "",
+      title: this.newSong.title !== null ? this.newSong.title : "",
+      sub_title: this.newSong.sub_title !== null ? this.newSong.sub_title : "",
+      bitrate: this.newSong.bitrate !== null ? this.newSong.bitrate : 0, 
+      year: this.newSong.year !== null ? this.newSong.year.toString() : "",
+      commentaries: this.newSong.commentaries !== null ? this.newSong.commentaries : "",
+      main_artist: this.newSong.main_artist !== null ? this.newSong.main_artist : "",
+      collaborators: this.newSong.collaborators !== null ? this.newSong.collaborators : "",
+      album_artist: this.newSong.album_artist !== null ? this.newSong.album_artist : "",
+      album: this.newSong.album !== null ? this.newSong.album : "",
+      track_number: this.newSong.track_number !== null ? this.newSong.track_number : "",
+      genre: this.newSong.genre !== null ? this.newSong.genre : "",
+      duration: this.newSong.duration !== null ? this.newSong.duration : 0, 
+    };
 
-    console.log('Add song submitted:', this.newSong);
+
     if (this.newSong.collection) {
       // Logic to add song to existing collection using newSong.collection
-      this.generalUseService.add_song(this.newSong).subscribe({
+      this.generalUseService.add_song(newSong_data, this.newSong.collection).subscribe({
         next: (response) => {
           console.log('Song added successfully:', response);
         },
@@ -113,23 +131,7 @@ export class LandingPageComponent {
 
     } else if (this.newCollectionName) {
       // Logic to create a new collection and add the song
-      let newSong_with_new_collection: any = {
-        title: this.newSong.title,
-        subtitle: this.newSong.subtitle,
-        bitrate: this.newSong.bitrate,
-        year: (this.newSong.year !== null) ? this.newSong.year.toString() : "",
-        commentaries: this.newSong.commentaries,
-        main_artist: this.newSong.main_artist,
-        collaborators: this.newSong.collaborators,
-        album_artist: this.newSong.album_artist,
-        album: this.newSong.album,
-        track_number: this.newSong.track_number,
-        genre: this.newSong.genre,
-        duration: this.newSong.duration,
-        collection: this.newCollectionName
-      };
-
-      this.generalUseService.add_song(newSong_with_new_collection).subscribe({
+      this.generalUseService.add_song(newSong_data, this.newCollectionName).subscribe({
         next: (response) => {
           console.log('Song added successfully into the new collection:', response);
         },
