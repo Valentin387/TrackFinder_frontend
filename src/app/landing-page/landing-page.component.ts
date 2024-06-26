@@ -17,6 +17,7 @@ export class LandingPageComponent {
     private generalUseService: GeneralUseService
   ) {}
 
+  //ngModel for the form
   searchCriteria: any = {
     songTitle: '',
     artist: '',
@@ -27,9 +28,11 @@ export class LandingPageComponent {
 
   searchResults: any[] = [];
 
+  //ngModel for the form
   newSong: any = {
+    name: '',
     title: '',
-    subtitle: '',
+    sub_title: '',
     bitrate: 0,
     year: '',
     commentaries: '',
@@ -97,14 +100,45 @@ export class LandingPageComponent {
   }
 
   onAddSong() {
-    console.log('Add song submitted:', this.newSong);
+    
+    let newSong_data: any = {
+      name: this.newSong.title !== null ? this.newSong.title : "",
+      title: this.newSong.title !== null ? this.newSong.title : "",
+      sub_title: this.newSong.sub_title !== null ? this.newSong.sub_title : "",
+      bitrate: this.newSong.bitrate !== null ? this.newSong.bitrate : 0, 
+      year: this.newSong.year !== null ? this.newSong.year.toString() : "",
+      commentaries: this.newSong.commentaries !== null ? this.newSong.commentaries : "",
+      main_artist: this.newSong.main_artist !== null ? this.newSong.main_artist : "",
+      collaborators: this.newSong.collaborators !== null ? this.newSong.collaborators : "",
+      album_artist: this.newSong.album_artist !== null ? this.newSong.album_artist : "",
+      album: this.newSong.album !== null ? this.newSong.album : "",
+      track_number: this.newSong.track_number !== null ? this.newSong.track_number.toString() : "",
+      genre: this.newSong.genre !== null ? this.newSong.genre : "",
+      duration: this.newSong.duration !== null ? this.newSong.duration : 0, 
+    };
+
+
     if (this.newSong.collection) {
       // Logic to add song to existing collection using newSong.collection
-      console.log('Adding song to existing collection:', this.newSong.collection);
+      this.generalUseService.add_song(newSong_data, this.newSong.collection).subscribe({
+        next: (response) => {
+          console.log('Song added successfully:', response);
+        },
+        error: (error) => {
+          console.error('Error adding song:', error);
+        }
+      });
+
     } else if (this.newCollectionName) {
       // Logic to create a new collection and add the song
-      console.log('Creating new collection:', this.newCollectionName, 'and adding song');
-      // Update your backend service to handle creating a new collection
+      this.generalUseService.add_song(newSong_data, this.newCollectionName).subscribe({
+        next: (response) => {
+          console.log('Song added successfully into the new collection:', response);
+        },
+        error: (error) => {
+          console.error('Error adding song:', error);
+        }
+      });
     } else {
       // Handle case where user didn't select or provide a collection name
       console.warn('Please select or provide a collection name');
