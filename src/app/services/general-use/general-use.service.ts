@@ -10,7 +10,7 @@ export class GeneralUseService {
 
   constructor(private http: HttpClient) {}
 
-  public baseUrl = 'http://127.0.0.1:8000/'; // Replace with your actual base URL
+  public baseUrl = 'https://trackfinder-backend-d6f24f57e5c6.herokuapp.com/'; // Replace with your actual base URL
 
 
   search_songs(body: any): Observable<any> {
