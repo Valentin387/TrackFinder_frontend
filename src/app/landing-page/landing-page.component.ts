@@ -5,11 +5,12 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { GeneralUseService } from '../services/general-use/general-use.service'; // Import GeneralUseService
 import { MatDialog } from '@angular/material/dialog'; // Import MatDialog
 import { ConfirmationDialogComponent} from '../confirmation-dialog/confirmation-dialog.component'; // Import ConfirmationDialogComponent
+import { SpinnerComponent } from '../spinner/spinner.component'; // Import SpinnerComponent
 
 @Component({
   selector: 'app-landing-page',
   standalone: true,
-  imports: [CommonModule, FormsModule, MatExpansionModule],
+  imports: [CommonModule, FormsModule, MatExpansionModule, SpinnerComponent],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.css'
 })
