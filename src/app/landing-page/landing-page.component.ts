@@ -153,11 +153,30 @@ export class LandingPageComponent {
   }
 
   clearSearchForm() {
-    this.searchCriteria = {};
+
+      this.searchCriteria.songTitle = '';
+      this.searchCriteria.artist = '';
+      this.searchCriteria.album = '';
+      this.searchCriteria.genre = '';
+      this.searchCriteria.releaseYear = '';
+
   }
 
   clearAddSongForm() {
-    this.newSong = {};
+    this.newSong.name = '';
+    this.newSong.title = '';
+    this.newSong.sub_title = '';
+    this.newSong.bitrate = 0;
+    this.newSong.year = '';
+    this.newSong.commentaries = '';
+    this.newSong.main_artist = '';
+    this.newSong.collaborators = '';
+    this.newSong.album_artist = '';
+    this.newSong.album = '';
+    this.newSong.track_number = '';
+    this.newSong.genre = '';
+    this.newSong.duration = 0;
+    this.newSong.collection = '';
   }
 
   getCollectionName(collection: any): string {
