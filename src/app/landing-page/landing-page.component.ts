@@ -106,7 +106,7 @@ export class LandingPageComponent {
   onAddSong() {
     
     let newSong_data: any = {
-      name: this.newSong.title !== null ? this.newSong.title : "",
+      //name: this.newSong.title !== null ? this.newSong.title : "",
       title: this.newSong.title !== null ? this.newSong.title : "",
       sub_title: this.newSong.sub_title !== null ? this.newSong.sub_title : "",
       bitrate: this.newSong.bitrate !== null ? this.newSong.bitrate : 0, 
