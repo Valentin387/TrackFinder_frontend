@@ -1,11 +1,13 @@
 .container {
   display: flex;
+  flex-direction: column; /* Stack elements vertically */
   width: 100%;
   margin: 0 auto;
 }
 
 .split-container {
   display: flex;
+  flex-direction: column; /* Ensure elements are stacked */
   flex-grow: 1;
 }
 
@@ -19,8 +21,5 @@
   margin-top: 1rem;
 }
 
-.form-group {
-  margin-bottom: 1rem;
-}
 
 /* Add more styles for buttons, inputs etc. as needed */
